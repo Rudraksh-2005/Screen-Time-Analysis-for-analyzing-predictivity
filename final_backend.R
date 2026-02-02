@@ -8,10 +8,10 @@ library(reshape2)   # To reshape data for the correlation heatmap
 
 
 # Ensure final/ directory exists for model and preprocessing objects
-dir.create("C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/final", showWarnings = FALSE)
+dir.create("C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity", showWarnings = FALSE)
 
 # Load data
-data <- read.csv("C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/data.csv")
+data <- read.csv("C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity/data.csv")
 
 # Define target and features explicitly
 target <- "Productivity"
@@ -119,7 +119,7 @@ print(p_cor)
 
 # Save feature names for frontend
 feature_names <- colnames(x_data)
-save(feature_names, file = "C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/final/feature_names.Rdata")
+save(feature_names, file = "C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity/feature_names.Rdata")
 
 # Prepare target
 y_data <- data[[target]]
@@ -148,7 +148,7 @@ xgb_model <- xgboost(
 )
 
 # Save model
-saveRDS(xgb_model, "C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/final/xgb_model.rds")
+saveRDS(xgb_model, "C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity/xgb_model.rds")
 
 # 5. Feature Importance (XGBoost)
 importance_matrix <- xgb.importance(model = xgb_model)
@@ -179,7 +179,7 @@ cat("Recall: ", xgb_recall, "\n")
 cat("F1-Score: ", xgb_f1, "\n")
 
 # Save preprocessing objects
-saveRDS(dummy_vars, "C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/final/dummy_vars.rds")
-save(y_labels, file = "C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/final/y_labels.Rdata")
+saveRDS(dummy_vars, "C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity/dummy_vars.rds")
+save(y_labels, file = "C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity/y_labels.Rdata")
 
 cat("✅ Model and preprocessing objects saved to `final/`\n")
