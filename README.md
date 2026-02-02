@@ -4,6 +4,9 @@
 This project analyzes screen usage behavior and predicts a user's productivity level using machine learning.
 It combines data visualization, XGBoost classification, and an interactive Shiny dashboard to provide personalized insights and recommendations.
 
+Why R?
+“Python is excellent for general-purpose ML and deep learning, but for this project—where exploratory analysis, interpretability, and visualization are central—R provides a more concise and expressive workflow. Also, Shiny allowed me to deploy the model interactively using the same language, which reduced complexity.”
+
 The system:
 
 Analyzes demographic and screen usage patterns
