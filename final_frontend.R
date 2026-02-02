@@ -85,10 +85,10 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   
   # Load the pre-trained XGBoost model, dummyVars object, feature names, and class labels
-  xgb_model <- readRDS("C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/final/xgb_model.rds")
-  dummy_vars <- readRDS("C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/final/dummy_vars.rds")
-  load("C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/final/feature_names.Rdata")
-  load("C:/Users/Lenovo/OneDrive/Documents/sem4/FUNDAMENTALS OF DATA SCIENCE sem4/final/y_labels.Rdata")
+  xgb_model <- readRDS("C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity/xgb_model.rds")
+  dummy_vars <- readRDS("C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity/dummy_vars.rds")
+  load("C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity/feature_names.Rdata")
+  load("C:/Users/Lenovo/OneDrive/Documents/College/SEM4/FUNDAMENTALS OF DATA SCIENCE sem4/Screen-Time-Analysis-for-analyzing-predictivity/y_labels.Rdata")
   
   observeEvent(input$analyze, {
     
