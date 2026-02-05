@@ -1,247 +1,136 @@
-📱 Screen Time Analysis for Predicting Productivity
-📌 Project Overview
+# 📱 Screen Time Analysis for Predicting Productivity
 
-Screen Time Analysis for Predicting Productivity is a data-driven project designed to analyze users’ screen usage behavior and predict their productivity levels.
+## 📌 Project Overview
+This project analyzes user screen usage behavior and predicts productivity levels using machine learning.  
+It combines **data analysis, visualization, model training, and an interactive frontend**.
 
-The project uses machine learning (XGBoost) to classify productivity into multiple levels based on factors such as:
+The system takes user inputs such as screen time, app usage, and notification handling, then predicts productivity as:
+- Low
+- Moderate
+- High
 
-Screen time duration
+---
 
-App usage category
+## 🎯 Objectives
+- Analyze screen usage patterns
+- Predict productivity using machine learning
+- Visualize behavior through charts
+- Provide an interactive frontend for users
 
-Notification handling behavior
+---
 
-Device type
-
-Usage time period
-
-The system provides:
-
-📊 Exploratory Data Analysis (EDA)
-
-🤖 Multi-class productivity prediction
-
-🎯 Personalized recommendations
-
-🌐 Interactive frontend dashboard
-
-🎯 Objectives
-
-Analyze how screen usage patterns affect productivity
-
-Build a predictive ML model for productivity classification
-
-Visualize behavioral trends using charts and plots
-
-Provide an interactive frontend for user input and prediction
-
-Bridge data science backend with a user-facing interface
-
-🧠 Productivity Classes
-
-The model predicts productivity into three categories:
-
-🔴 Low Productivity – high distraction, excessive screen time
-
-🟡 Moderate Productivity – balanced but improvable usage
-
-🟢 High Productivity – focused and efficient usage habits
-
-🏗️ Project Architecture
+## 🏗️ Project Structure
 Screen-Time-Analysis-for-analyzing-predictivity/
 │
-├── data.csv                  # Dataset
-├── backend.py                # Python backend (EDA + ML training)
-├── frontend.py               # Streamlit frontend
-├── README.md                 # Project documentation
+├── data.csv
+├── backend.py
+├── frontend.py
+├── README.md
 │
-├── xgb_model.pkl             # Trained XGBoost model (Python)
-├── dummy_vars.pkl            # One-hot encoder
-├── feature_names.pkl         # Encoded feature names
-├── y_labels.pkl              # Productivity class labels
+├── xgb_model.pkl
+├── dummy_vars.pkl
+├── feature_names.pkl
+├── y_labels.pkl
+
+
+---
+
+## 📊 Dataset Description
+The dataset contains demographic and screen usage features.
+
+### Input Features
+- Age.Group
+- Gender
+- Education.Level
+- Occupation
+- Average.Screen.Time
+- Device
+- Screen.Activity
+- App.Category
+- Screen.Time.Period
+- Notification.Handling
+
+### Target Variable
+- Productivity (categorical)
+
+---
+
+## 📈 Exploratory Data Analysis (EDA)
+The backend includes optional EDA with:
+- Productivity distribution bar chart
+- Screen time vs productivity
+- Notification handling vs productivity
+- App category vs productivity
+- Boxplots for behavioral comparison
+- Correlation heatmap (after encoding)
+- Feature importance plot (XGBoost)
+
+EDA can be enabled or disabled for performance.
+
+---
+
+## 🤖 Machine Learning Model
+- Algorithm: **XGBoost**
+- Type: Multi-class classification
+- Encoding: One-hot encoding
+- Split: 80% training / 20% testing
+
+### Evaluation Metrics
+- Accuracy
+- Precision
+- Recall
+- F1-score
+
+---
+
+## 🌐 Frontend
+The frontend is built using **Streamlit**.
+
+### Features
+- Sidebar questionnaire (similar to Shiny)
+- Button-based prediction
+- Probability visualization
+- Personalized productivity recommendations
+
+---
+
+## 🧰 Technologies Used
+
+### Python Libraries
+- pandas
+- numpy
+- scikit-learn
+- xgboost
+- matplotlib
+- seaborn
+- joblib
+- streamlit
+
+### R Libraries (Initial Version)
+- tidyverse
+- caret
+- ggplot2
+- shiny
+- xgboost
+
+---
+
+## 🔁 R to Python Conversion
+The project was initially built in **R (Shiny + caret)** and later fully converted to **Python (Streamlit + scikit-learn)** for better deployment and scalability.
+
+---
+
+## ▶️ How to Run the Project
+
+### 1. Install dependencies
 
-📊 Dataset Description
-
-The dataset (data.csv) contains both demographic and screen usage features.
-
-🔑 Input Features
-Feature	Description
-Age.Group	User age category
-Gender	Male / Female
-Education.Level	Education background
-Occupation	Student / Professional
-Average.Screen.Time	Daily screen usage
-Device	Primary device used
-Screen.Activity	Type of activity
-App.Category	App usage category
-Screen.Time.Period	Time of usage
-Notification.Handling	How notifications are handled
-🎯 Target Variable
-
-Productivity (multi-class categorical)
-
-📈 Exploratory Data Analysis (EDA)
-
-EDA is performed in the backend (can be toggled ON/OFF).
-
-Visualizations Included:
-
-📊 Productivity class distribution (bar chart)
-
-📊 Notification handling vs productivity (stacked bar)
-
-📊 Screen time vs productivity (stacked bar)
-
-📊 App category vs productivity
-
-📦 Boxplots for screen time and notification behavior
-
-🔥 Correlation heatmap (after one-hot encoding)
-
-⭐ XGBoost feature importance plot
-
-EDA is run once for insights and then disabled for performance.
-
-🤖 Machine Learning Model
-Model Used
-
-XGBoost (Extreme Gradient Boosting)
-
-Multi-class classification (multi:softprob)
-
-Why XGBoost?
-
-Handles categorical data well after encoding
-
-High performance and accuracy
-
-Prevents overfitting using boosting
-
-Industry-standard ML algorithm
-
-Training Pipeline
-
-Data cleaning
-
-Column normalization (R-style compatibility)
-
-One-hot encoding (OneHotEncoder)
-
-Train-test split (80/20)
-
-XGBoost training
-
-Evaluation using Accuracy, Precision, Recall, F1-score
-
-Model serialization (.pkl)
-
-🧪 Model Evaluation Metrics
-
-The model is evaluated using:
-
-Accuracy
-
-Precision (macro)
-
-Recall (macro)
-
-F1-score (macro)
-
-These metrics ensure balanced performance across all productivity classes.
-
-🌐 Frontend (User Interface)
-Technology Used
-
-Streamlit (Python)
-
-Why Streamlit?
-
-Python-native frontend
-
-Fast development
-
-Ideal replacement for R Shiny
-
-Interactive & lightweight
-
-Frontend Features
-
-Sidebar questionnaire (like Shiny’s selectInput)
-
-Button-triggered prediction
-
-Probability bar chart for each class
-
-Personalized productivity recommendations
-
-Cached model loading for fast response
-
-🧾 User Workflow
-
-User opens the Streamlit dashboard
-
-Answers screen usage questions
-
-Clicks Analyze My Productivity
-
-Model predicts productivity level
-
-Probabilities are visualized
-
-Actionable recommendations are shown
-
-🧰 Libraries & Tools Used
-📦 Python Libraries
-
-pandas – data manipulation
-
-numpy – numerical computation
-
-scikit-learn – preprocessing & evaluation
-
-xgboost – machine learning model
-
-matplotlib & seaborn – visualizations
-
-joblib – model serialization
-
-streamlit – frontend UI
-
-📦 R Libraries (Original Version)
-
-tidyverse
-
-caret
-
-xgboost
-
-ggplot2
-
-shiny
-
-🔁 R to Python Transition
-
-The project was initially developed in R and later fully converted to Python.
-
-Conversion Summary:
-Component	R	Python
-Backend	caret + xgboost	scikit-learn + xgboost
-Encoding	dummyVars	OneHotEncoder
-Visualization	ggplot2	matplotlib + seaborn
-Frontend	Shiny	Streamlit
-Model files	.rds	.pkl
-
-This conversion makes the project more deployable and industry-ready.
-
-▶️ How to Run the Project
-1️⃣ Install dependencies
 pip install pandas numpy matplotlib seaborn scikit-learn xgboost joblib streamlit
 
-2️⃣ Run backend (train & save model)
+### 2. Run backend
 python backend.py
 
-3️⃣ Run frontend
+### 3. Run frontend
 python -m streamlit run frontend.py
 
-4️⃣ Open browser
+### 4. Open browser
 http://localhost:8501
