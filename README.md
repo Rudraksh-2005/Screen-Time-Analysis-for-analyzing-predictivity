@@ -1,315 +1,247 @@
 📱 Screen Time Analysis for Predicting Productivity
 📌 Project Overview
 
-This project analyzes screen usage behavior and predicts a user's productivity level using machine learning.
-It combines data visualization, XGBoost classification, and an interactive Shiny dashboard to provide personalized insights and recommendations.
+Screen Time Analysis for Predicting Productivity is a data-driven project designed to analyze users’ screen usage behavior and predict their productivity levels.
 
-Why R?
-“Python is excellent for general-purpose ML and deep learning, but for this project—where exploratory analysis, interpretability, and visualization are central—R provides a more concise and expressive workflow. Also, Shiny allowed me to deploy the model interactively using the same language, which reduced complexity.”
+The project uses machine learning (XGBoost) to classify productivity into multiple levels based on factors such as:
 
-The system:
+Screen time duration
 
-Analyzes demographic and screen usage patterns
-
-Trains a multi-class XGBoost model
-
-Predicts productivity as Low / Moderate / High
-
-Provides actionable recommendations via a clean UI
-
-🎯 Objectives
-
-Understand how screen habits impact productivity
-
-Visualize behavioral trends using graphs
-
-Build a predictive ML model
-
-Provide personalized productivity feedback
-
-Create a user-friendly interactive dashboard
-
-🛠️ Technologies & Tools Used
-🔹 Programming Language
-
-R
-
-🔹 Libraries Used (Backend)
-Library	Purpose
-tidyverse	Data cleaning & manipulation
-caret	Train-test split, dummy encoding, evaluation
-xgboost	Machine learning model
-MLmetrics	Precision, Recall, F1-Score
-ggplot2	Data visualization
-reshape2	Data reshaping for heatmap
-🔹 Libraries Used (Frontend – Shiny)
-Library	Purpose
-shiny	Web dashboard
-ggplot2	Probability visualization
-dplyr	Data handling
-xgboost	Prediction
-caret	Feature alignment
-📂 Project Structure
-Screen-Time-Analysis-for-analyzing-predictivity/
-│
-├── data.csv
-├── backend.R
-├── frontend.R
-├── xgb_model.rds
-├── dummy_vars.rds
-├── feature_names.Rdata
-├── y_labels.Rdata
-└── README.md
-
-📊 Dataset Description
-
-The dataset includes:
-
-Demographics: Age, Gender, Education, Occupation
-
-Screen Behavior: Screen time, device type, activity
-
-Usage Patterns: App category, usage time, notifications
-
-Target Variable: Productivity (categorical)
-
-⚙️ Backend (Model Training & Analysis)
-1️⃣ Data Loading & Cleaning
-
-CSV file is loaded
-
-Only required columns are selected
-
-Missing values are removed
-
-Target (Productivity) is converted to factor
-
-2️⃣ Exploratory Data Analysis (Graphs)
-📌 Productivity Distribution
-
-Bar Plot
-
-Shows how many users fall into each productivity class
-
-📌 Notification Handling vs Productivity
-
-Stacked Bar Plot
-
-Displays how notification habits influence productivity
-
-📌 Screen Time vs Productivity
-
-Stacked Bar Plot
-
-Shows productivity proportions for different screen durations
-
-📌 App Category vs Productivity
-
-Stacked Bar Plot
-
-Highlights which app types are linked to productivity loss or gain
-
-📌 Boxplots
-
-Screen Time vs Productivity
-
-Notification Handling vs Productivity
-Shows variation and spread across productivity levels
-
-📌 Correlation Heatmap
-
-Generated after one-hot encoding
-
-Displays relationships between encoded features
-
-Helps detect redundancy and feature dependency
-
-3️⃣ Feature Engineering
-
-One-Hot Encoding using dummyVars
-
-All categorical variables converted to numeric
-
-Encoded feature names saved for frontend consistency
-
-4️⃣ Train-Test Split
-
-80% training, 20% testing
-
-Reproducibility ensured using set.seed(123)
-
-5️⃣ XGBoost Model Training
-
-Multi-class classification (multi:softprob)
-
-Produces probability for each productivity class
-
-Trained using 100 boosting rounds
-
-6️⃣ Model Evaluation
-
-Metrics used:
-
-Accuracy
-
-Precision
-
-Recall
-
-F1-Score
-
-A confusion matrix is generated to analyze performance.
-
-7️⃣ Feature Importance
-
-XGBoost Gain Plot
-
-Shows which features influence productivity most
-
-Helps interpret the model
-
-8️⃣ Saved Objects
-
-Used by frontend:
-
-xgb_model.rds
-
-dummy_vars.rds
-
-feature_names.Rdata
-
-y_labels.Rdata
-
-🖥️ Frontend (Shiny Dashboard)
-🎨 UI Design
-
-Clean and minimal UI
-
-Soft background colors
-
-Sidebar for inputs
-
-Main panel for insights & plots
-
-🧠 User Inputs
-
-Users answer:
-
-Age group
-
-Gender
-
-Education level
-
-Occupation
-
-Average screen time
-
-Device used
-
-Screen activity
-
-App category
-
-Usage time period
+App usage category
 
 Notification handling behavior
 
-🔍 Server Logic
+Device type
 
-Load trained model & preprocessing objects
+Usage time period
 
-Convert user inputs into factors
+The system provides:
 
-Apply same dummy encoding as backend
+📊 Exploratory Data Analysis (EDA)
 
-Align features with training data
+🤖 Multi-class productivity prediction
 
-Predict productivity probabilities
+🎯 Personalized recommendations
 
-Display results dynamically
+🌐 Interactive frontend dashboard
 
-📈 Output Components
-✅ Predicted Productivity Level
+🎯 Objectives
 
-Displayed as text:
+Analyze how screen usage patterns affect productivity
 
-Low Productivity
+Build a predictive ML model for productivity classification
 
-Moderate Productivity
+Visualize behavioral trends using charts and plots
 
-High Productivity
+Provide an interactive frontend for user input and prediction
 
-📊 Probability Bar Chart
+Bridge data science backend with a user-facing interface
 
-Shows confidence (%) for each class
+🧠 Productivity Classes
 
-Color-coded:
+The model predicts productivity into three categories:
 
-🔴 Low
+🔴 Low Productivity – high distraction, excessive screen time
 
-🟡 Moderate
+🟡 Moderate Productivity – balanced but improvable usage
 
-🟢 High
+🟢 High Productivity – focused and efficient usage habits
 
-🌟 Personalized Recommendations
+🏗️ Project Architecture
+Screen-Time-Analysis-for-analyzing-predictivity/
+│
+├── data.csv                  # Dataset
+├── backend.py                # Python backend (EDA + ML training)
+├── frontend.py               # Streamlit frontend
+├── README.md                 # Project documentation
+│
+├── xgb_model.pkl             # Trained XGBoost model (Python)
+├── dummy_vars.pkl            # One-hot encoder
+├── feature_names.pkl         # Encoded feature names
+├── y_labels.pkl              # Productivity class labels
 
-Based on prediction:
+📊 Dataset Description
 
-🔴 Low Productivity
+The dataset (data.csv) contains both demographic and screen usage features.
 
-Reduce entertainment screen time
+🔑 Input Features
+Feature	Description
+Age.Group	User age category
+Gender	Male / Female
+Education.Level	Education background
+Occupation	Student / Professional
+Average.Screen.Time	Daily screen usage
+Device	Primary device used
+Screen.Activity	Type of activity
+App.Category	App usage category
+Screen.Time.Period	Time of usage
+Notification.Handling	How notifications are handled
+🎯 Target Variable
 
-Disable notifications
+Productivity (multi-class categorical)
 
-Pomodoro technique
+📈 Exploratory Data Analysis (EDA)
 
-Focus mode
+EDA is performed in the backend (can be toggled ON/OFF).
 
-Mindfulness habits
+Visualizations Included:
 
-🟡 Moderate Productivity
+📊 Productivity class distribution (bar chart)
 
-Weekly screen review
+📊 Notification handling vs productivity (stacked bar)
 
-Time blocking
+📊 Screen time vs productivity (stacked bar)
 
-Habit stacking
+📊 App category vs productivity
 
-Task planning
+📦 Boxplots for screen time and notification behavior
 
-🟢 High Productivity
+🔥 Correlation heatmap (after one-hot encoding)
 
-Maintain routines
+⭐ XGBoost feature importance plot
 
-Prevent burnout
+EDA is run once for insights and then disabled for performance.
 
-Balance work & rest
+🤖 Machine Learning Model
+Model Used
 
-Share best practices
+XGBoost (Extreme Gradient Boosting)
+
+Multi-class classification (multi:softprob)
+
+Why XGBoost?
+
+Handles categorical data well after encoding
+
+High performance and accuracy
+
+Prevents overfitting using boosting
+
+Industry-standard ML algorithm
+
+Training Pipeline
+
+Data cleaning
+
+Column normalization (R-style compatibility)
+
+One-hot encoding (OneHotEncoder)
+
+Train-test split (80/20)
+
+XGBoost training
+
+Evaluation using Accuracy, Precision, Recall, F1-score
+
+Model serialization (.pkl)
+
+🧪 Model Evaluation Metrics
+
+The model is evaluated using:
+
+Accuracy
+
+Precision (macro)
+
+Recall (macro)
+
+F1-score (macro)
+
+These metrics ensure balanced performance across all productivity classes.
+
+🌐 Frontend (User Interface)
+Technology Used
+
+Streamlit (Python)
+
+Why Streamlit?
+
+Python-native frontend
+
+Fast development
+
+Ideal replacement for R Shiny
+
+Interactive & lightweight
+
+Frontend Features
+
+Sidebar questionnaire (like Shiny’s selectInput)
+
+Button-triggered prediction
+
+Probability bar chart for each class
+
+Personalized productivity recommendations
+
+Cached model loading for fast response
+
+🧾 User Workflow
+
+User opens the Streamlit dashboard
+
+Answers screen usage questions
+
+Clicks Analyze My Productivity
+
+Model predicts productivity level
+
+Probabilities are visualized
+
+Actionable recommendations are shown
+
+🧰 Libraries & Tools Used
+📦 Python Libraries
+
+pandas – data manipulation
+
+numpy – numerical computation
+
+scikit-learn – preprocessing & evaluation
+
+xgboost – machine learning model
+
+matplotlib & seaborn – visualizations
+
+joblib – model serialization
+
+streamlit – frontend UI
+
+📦 R Libraries (Original Version)
+
+tidyverse
+
+caret
+
+xgboost
+
+ggplot2
+
+shiny
+
+🔁 R to Python Transition
+
+The project was initially developed in R and later fully converted to Python.
+
+Conversion Summary:
+Component	R	Python
+Backend	caret + xgboost	scikit-learn + xgboost
+Encoding	dummyVars	OneHotEncoder
+Visualization	ggplot2	matplotlib + seaborn
+Frontend	Shiny	Streamlit
+Model files	.rds	.pkl
+
+This conversion makes the project more deployable and industry-ready.
 
 ▶️ How to Run the Project
-Step 1: Install Libraries
-install.packages(c(
-  "tidyverse", "caret", "xgboost",
-  "MLmetrics", "ggplot2", "reshape2", "shiny"
-))
+1️⃣ Install dependencies
+pip install pandas numpy matplotlib seaborn scikit-learn xgboost joblib streamlit
 
-Step 2: Run Backend
-source("backend.R")
+2️⃣ Run backend (train & save model)
+python backend.py
 
-Step 3: Run Shiny App
-source("frontend.R")
+3️⃣ Run frontend
+python -m streamlit run frontend.py
 
-🚀 Key Highlights
-
-✔ End-to-end ML pipeline
-✔ Interpretable visualizations
-✔ Real-time prediction
-✔ Personalized recommendations
-✔ Clean and interactive UI
-
-🧠 Conclusion
-
-This project demonstrates how data science and machine learning can be used to analyze everyday digital habits and provide actionable insights for improving productivity.
-It bridges analytics, ML, and human-centered UI design into a single system.
+4️⃣ Open browser
+http://localhost:8501
